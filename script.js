@@ -1,51 +1,43 @@
-// Enregistrement du plugin ScrollTrigger de GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-// --- 1. Gestion du Curseur ---
-const cursor = document.getElementById('cursor');
-const outline = document.getElementById('cursor-outline');
-const clickables = document.querySelectorAll('.clickable');
+// 1. Détection Mobile / Desktop
+const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-window.addEventListener('mousemove', (e) => {
-    // Le point central suit immédiatement
-    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
-    // Le cercle suit avec un léger retard (smooth)
-    gsap.to(outline, { x: e.clientX - 15, y: e.clientY - 15, duration: 0.15 });
+// 2. Curseur (Desktop uniquement)
+if (!isTouch) {
+    const cursor = document.querySelector('#cursor');
+    const outline = document.querySelector('#cursor-outline');
+    
+    window.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
+        gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+    });
+}
+
+// 3. Menu Burger
+const burger = document.getElementById('burger');
+const menu = document.getElementById('mobileMenu');
+
+burger.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    // Animation simple des barres du burger
+    const spans = burger.querySelectorAll('span');
+    spans[0].style.transform = menu.classList.contains('active') ? 'rotate(45deg) translateY(10px)' : 'none';
+    spans[1].style.transform = menu.classList.contains('active') ? 'rotate(-45deg) translateY(-10px)' : 'none';
 });
 
-// Effet du curseur sur les éléments interactifs
-clickables.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        gsap.to(outline, { scale: 1.5, borderColor: '#d5001c', backgroundColor: 'rgba(213, 0, 28, 0.1)', duration: 0.3 });
-        gsap.to(cursor, { scale: 0.5, duration: 0.3 });
-    });
-    item.addEventListener('mouseleave', () => {
-        gsap.to(outline, { scale: 1, borderColor: 'rgba(255, 255, 255, 0.5)', backgroundColor: 'transparent', duration: 0.3 });
-        gsap.to(cursor, { scale: 1, duration: 0.3 });
-    });
-});
-
-// --- 2. Loader et Animation d'Entrée ---
+// 4. Loader & Intro
 window.addEventListener('load', () => {
     const tl = gsap.timeline();
-
-    tl.to(".bar", { width: "100%", duration: 1.2, ease: "power2.inOut" })
+    tl.to(".bar", { width: "100%", duration: 1 })
       .to("#loader", { yPercent: -100, duration: 0.8, ease: "power4.inOut" })
-      .from("#hero-title", { opacity: 0, y: 100, duration: 1, ease: "expo.out" }, "-=0.2")
-      .from(".hero p", { opacity: 0, y: 20, duration: 0.8 }, "-=0.5");
+      .from("#hero-title", { opacity: 0, y: 80, duration: 1.2, ease: "expo.out" }, "-=0.2");
 });
 
-// --- 3. Animations au Défilement (Reveal) ---
+// 5. Scroll Reveals
 gsap.utils.toArray(".reveal").forEach(el => {
     gsap.to(el, {
-        scrollTrigger: {
-            trigger: el,
-            start: "top 92%", // Déclenche l'animation quand l'élément est à 92% du haut
-            toggleActions: "play none none none"
-        },
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out"
+        scrollTrigger: { trigger: el, start: "top 90%" },
+        opacity: 1, y: 0, duration: 1, ease: "power2.out"
     });
 });

@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porsche 911 GT3 RS | Performance Pure</title>
-    
+    <title>Porsche | Performance 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
@@ -17,68 +15,60 @@
     <div id="cursor-outline"></div>
 
     <div id="loader">
-        <div class="logo-loader">PORSCHE</div>
+        <div class="logo">PORSCHE</div>
         <div class="bar-container"><div class="bar"></div></div>
     </div>
 
     <nav>
-        <div class="logo clickable">PORSCHE</div>
-        <div class="nav-links clickable">MODÈLES | CONFIGURATEUR</div>
+        <div class="logo">PORSCHE</div>
+        <div class="burger clickable" id="burger">
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" class="clickable">Modèles</a>
+        <a href="#" class="clickable">Achat</a>
+        <a href="#" class="clickable">Services</a>
+    </div>
 
     <header class="hero">
         <div class="hero-content">
             <h1 id="hero-title">911 GT3 RS</h1>
             <p class="reveal">L'aérodynamisme au service de l'adrénaline.</p>
+            <div class="cta-group reveal">
+                <a href="#" class="btn btn-primary clickable">Configurer</a>
+            </div>
         </div>
     </header>
 
-    <section class="story grid-2">
+    <section class="story grid">
         <div class="reveal">
             <h2>LA FORME SUIT LA FONCTION.</h2>
-            <p>Chaque détail est optimisé pour le circuit. Le radiateur central, concept issu de la compétition, permet d'intégrer des éléments aérodynamiques actifs.</p>
-            <div class="divider"></div>
+            <p>Chaque prise d'air est une décision. La GT3 RS redéfinit les limites de l'appui aérodynamique sur route.</p>
         </div>
         <div class="img-box reveal clickable">
-            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80" alt="Porsche Side View">
+            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80" alt="Porsche Side">
         </div>
     </section>
 
-    <section class="tech-specs">
-        <h2 class="reveal">CARACTÉRISTIQUES</h2>
-        <div class="cards-container">
+    <section class="tech">
+        <div class="cards">
             <div class="card reveal clickable">
-                <h3>0-100 KM/H</h3>
-                <p class="stat-value">3,2 S</p>
+                <span class="label">Puissance</span>
+                <span class="value">525 CH</span>
             </div>
             <div class="card reveal clickable">
-                <h3>PUISSANCE</h3>
-                <p class="stat-value">525 CH</p>
-            </div>
-            <div class="card reveal clickable">
-                <h3>VITESSE MAX</h3>
-                <p class="stat-value">296 KM/H</p>
+                <span class="label">V-Max</span>
+                <span class="value">296 KM/H</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">PORSCHE</div>
-                <p>© 2026 Porsche France SAS.</p>
-            </div>
-            <div class="footer-col">
-                <h4>MODÈLES</h4>
-                <a href="#" class="footer-link clickable">911</a>
-                <a href="#" class="footer-link clickable">Taycan</a>
-            </div>
-            <div class="footer-col">
-                <h4>UNIVERS</h4>
-                <a href="#" class="footer-link clickable">Motorsport</a>
-                <a href="#" class="footer-link clickable">Musée</a>
-            </div>
-        </div>
+        <div class="logo">PORSCHE</div>
+        <p>© 2026 Porsche France SAS</p>
     </footer>
 
     <script src="script.js"></script>
